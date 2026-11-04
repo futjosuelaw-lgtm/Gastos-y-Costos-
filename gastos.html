@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de gastos</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="encabezado">
+      <div class="marca" aria-hidden="true"></div>
+      <div>
+        <h1><center>Control de gastos</center></h1>
+        <p><center>Resumen de tus movimientos</center></p>
+      </div>
+    </header>
+
+    <section class="resumen" aria-label="Resumen financiero">
+      <article class="tarjeta balance">
+        <span>Balance</span>
+        <strong id="balance">$0.00</strong>
+      </article>
+      <article class="tarjeta">
+        <span>Ingresos</span>
+        <strong id="ingresos">$0.00</strong>
+      </article>
+      <article class="tarjeta">
+        <span>Gastos</span>
+        <strong id="gastos">$0.00</strong>
+      </article>
+    </section>
+
+    <section class="seccion">
+      <h2>Agregar movimiento</h2>
+      <form id="formulario" class="formulario">
+        <label>
+          Descripción
+          <input id="descripcion" type="text" placeholder="Ej. Supermercado" required>
+        </label>
+
+        <label>
+          Monto
+          <input id="monto" type="number" min="0.01" step="0.01" placeholder="0.00" required>
+        </label>
+
+        <label>
+          Tipo
+          <select id="tipo">
+            <option value="gasto">Gasto</option>
+            <option value="ingreso">Ingreso</option>
+          </select>
+        </label>
+
+        <label>
+          Categoría
+          <select id="categoria">
+            <option>Comida</option>
+            <option>Transporte</option>
+            <option>Vivienda</option>
+            <option>Salario</option>
+            <option>Otros</option>
+          </select>
+        </label>
+
+        <button class="agregar" type="submit">Agregar movimiento</button>
+      </form>
+    </section>
+
+    <section class="seccion movimientos-seccion">
+      <h2>Movimientos</h2>
+      <ul id="lista-movimientos" aria-live="polite"></ul>
+      <p id="vacio" class="vacio">Todavía no hay movimientos. Agrega uno para comenzar.</p>
+    </section>
+  </main>
+
+  <dialog id="dialogo-edicion" aria-labelledby="titulo-edicion">
+    <form id="formulario-edicion" method="dialog">
+      <h2 id="titulo-edicion">Modificar movimiento</h2>
+
+      <label>
+        Descripción
+        <input id="editar-descripcion" type="text" required>
+      </label>
+
+      <label>
+        Monto
+        <input id="editar-monto" type="number" min="0.01" step="0.01" required>
+      </label>
+
+      <div class="acciones-dialogo">
+        <button class="secundario" type="button" onclick="document.querySelector('#dialogo-edicion').close()">
+          Cancelar
+        </button>
+        <button class="agregar" id="guardar-edicion" type="submit">
+          Guardar cambios
+        </button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
